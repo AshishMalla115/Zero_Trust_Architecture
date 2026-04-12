@@ -20,7 +20,7 @@ float score_failed_attempts(uint8_t failed_attempts){
 	if(failed_attempts >= 5){
 		return 1.0f;
 	}if(failed_attempts >= 3){
-		return 0.7;
+		return 0.7f;
 	}if(failed_attempts >=1){
 		return 0.3f;
 	}
@@ -31,4 +31,16 @@ float score_new_device(uint64_t device_hash){
 }
 float score_new_location(uint32_t geo_hash){
 	return 0.5f;
+}
+
+float compute_logic_socre(const LoginEvent* event){
+	float sum = 0; 
+	sum = sum + score_time_of_day(int64_t timestamp_unix);
+       	sum = sum + core_failed_attempts(uint8_t failed_attempts);
+	sum = sum + score_new_device(uint64_t device_hash);
+	sum = sum + score_new_location(uint32_t geo_hash);
+	if(sum > 1){
+		return 1.0f;
+	}
+	return sum;	
 }
