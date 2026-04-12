@@ -19,28 +19,28 @@ void  re_engine_destroy(RiskEngine* engine){
 RiskDecision re_evaluate_login(RiskEngine* engine,const LoginEvent*event){
 	float score = compute_login_score(event); 
 	DecisionType decision; 
-	if(score < engine->config.score_thresthold_mfa){
+	if(score < engine->config.score_threshold_mfa){
 		decision = ALLOW; 
-	}else if(score < engine->config.score_thresthold_block){
+	}else if(score < engine->config.score_threshold_block){
 		decision = MFA_REQUIRED;
 	}else{
 		decision = BLOCK;
 	}
 
 	RiskLevel risk; 
-	if(score < 0.3){
+	if(score < 0.3f){
 		risk = LOW; 
-	}else if(score < 0.6){
+	}else if(score < 0.6f){
 		risk = MEDIUM;
-	}else if(score < 0.8){
+	}else if(score < 0.8f){
 		risk = HIGH;
 	}else{
 		risk = CRITICAL;
 	}
 
-	RiskDevision result; 
+	RiskDecision result; 
 	result.decision = decision; 
-	result.risk_level = risk_level; 
+	result.risk_level = risk; 
 	result.score = score; 
 	result.rule_score = score; 
 	result.ml_score = 0.0f; 
