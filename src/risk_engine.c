@@ -5,11 +5,14 @@ struct RiskEngine{
 	EngineConfig config;
 }
 RiskEngine* re_engine_create(const EngineConfig* config){
-	uint64_t parameters = malloc(sizeof(RiskEngine));
-	if(parameters == NULL){
+	RiskEngine engine = malloc(sizeof(RiskEngine));
+	if(engine == NULL){
 		return NULL;
-	}else{
-		engine->config = *config;
 	}
-	return *config;
+	engine->config = *config;
+	return engine;
+}
+void  re_engine_destroy(RiskEngine* engine){
+	free(engine);
+	return;
 }
