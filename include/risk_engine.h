@@ -36,6 +36,7 @@ typedef struct {
     uint64_t device_hash;
     uint32_t ip_hash;
     uint32_t geo_hash;
+    uint8_t failed_attempts;
 } LoginEvent;
 
 typedef struct {
