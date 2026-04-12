@@ -35,10 +35,10 @@ float score_new_location(uint32_t geo_hash){
 
 float compute_login_score(const LoginEvent* event){
 	float sum = 0; 
-	sum = sum + score_time_of_day(event->timestamp_unix*0.25f);
-       	sum = sum + score_failed_attempts(event->failed_attempts*0.30f);
-	sum = sum + score_new_device(event->device_hash*0.25f);
-	sum = sum + score_new_location(event->geo_hash*0.20f);
+	sum = sum + score_time_of_day(event->timestamp_unix)*0.25f;
+       	sum = sum + score_failed_attempts(event->failed_attempts)*0.30f;
+	sum = sum + score_new_device(event->device_hash)*0.25f;
+	sum = sum + score_new_location(event->geo_hash)*0.20f;
 	if(sum < 0.0f){
 		return 0.0f;
 	}
