@@ -9,7 +9,7 @@ float score_time_of_day(int64_t timestamp_unix){
 		return 0.0f;
 	}if(hour>= 18 && hour<= 22){
                 return 0.3f;
-        }if(hour>= 22 || hour<= 6){
+        }if(hour>= 22 || hour< 6){
                 return 1.0f;
         }if(hour>= 6 && hour<= 9){
                 return 0.5f;
@@ -17,14 +17,18 @@ float score_time_of_day(int64_t timestamp_unix){
 	return 0.5f;
 }
 float score_failed_attempts(uint8_t failed_attempts){
-	if(failed_attempts > 3){
-		return 1.0f;	
-	}if(failed_attempts == 3){
-		return 0.5f;
-	}if(failed_attempts == 2){
+	if(failed_attempts >= 5){
+		return 1.0f;
+	}if(failed_attempts >= 3){
+		return 0.7;
+	}if(failed_attempts >=1){
 		return 0.3f;
-	}if(failed_attempts == 1){
-		return 0.2f;
 	}
 	return 0.0f;
+}
+float score_new_device(uint64_t device_hash){
+	return 1.0f;
+}
+float score_new_location(uint32_t geo_hash){
+	return 0.5f;
 }
