@@ -1,19 +1,19 @@
 #include "risk_engine.h"
 #include <time.h>
 
-time_t t = (time_t)timestamp_unix; 
-struct tm* tm_info = localtime(&t); 
-int hour = tm_info->tm_hour;
-
 float score_time_of_day(int64_t timestamp_unix){
-	if(timestamp_unix >= 9 && timestamp_unix <= 18){
+	time_t t = (time_t)timestamp_unix;
+	struct tm* tm_info = localtime(&t);
+	int hour = tm_info->tm_hour;
+	if(hour>= 9 && hour<= 18){
 		return 0.0;
-	}if(timestamp_unix >= 18 && timestamp_unix <= 22){
+	}if(hour>= 18 && hour<= 22){
                 return 0.3;
-        }if(timestamp_unix >= 22 && timestamp_unix <= 6){
+        }if(hour>= 22 && hour<= 6){
                 return 1.0;
-        }if(timestamp_unix >= 6 && timestamp_unix <= 9){
+        }if(hour>= 6 && hour<= 9){
                 return 0.5;
         }
+	return 0.5f;
 }
 
