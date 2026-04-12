@@ -1,11 +1,11 @@
 #include "risk_engine.h"
-#include <stdint.h>
+#include <stdlib.h>
 
 struct RiskEngine{
 	EngineConfig config;
-}
+};
 RiskEngine* re_engine_create(const EngineConfig* config){
-	RiskEngine engine = malloc(sizeof(RiskEngine));
+	RiskEngine* engine = malloc(sizeof(RiskEngine));
 	if(engine == NULL){
 		return NULL;
 	}
@@ -14,5 +14,4 @@ RiskEngine* re_engine_create(const EngineConfig* config){
 }
 void  re_engine_destroy(RiskEngine* engine){
 	free(engine);
-	return;
 }
