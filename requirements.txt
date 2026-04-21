@@ -6,3 +6,8 @@ seaborn
 jupyter
 pytest
 psycopg2-binary
+sqlalchemy==2.0.30
+alembic==1.13.1
+redis==5.0.3
+python-dotenv==1.0.1
+cryptography==42.0.5
